@@ -14,7 +14,19 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:8080',
+    'http://192.168.41.147:8080',
+    'http://localhost:5173',
+    'https://food-fusion-gamma.vercel.app',
+    'https://food-fusion-backend-ovw0.onrender.com'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'x-auth-token', 'Authorization'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Log environment variables (remove in production)
